@@ -1,0 +1,29 @@
+SELECT MIN(total), max(total)
+FROM Invoice;
+
+SELECT BillingCity
+FROM Invoice
+GROUP BY BillingCity ORDER BY count(*) DESC;
+
+SELECT count(MediaType.MediaTypeId = "2")
+FROM Track
+INNER JOIN MediaType
+ON Track.MediaTypeId = MediaType.MediaTypeId;
+
+SELECT Artist.Name, COUNT(*) as Die_meisten_Alben
+FROM Album
+INNER JOIN Artist ON Album.ArtistId = Artist.ArtistId
+GROUP BY Artist.Name
+ORDER BY Die_meisten_Alben DESC;
+
+SELECT Genre.Name, COUNT(*) as Track_Anzahl
+FROM Track
+INNER JOIN Genre ON  Track.GenreId = Genre.GenreId
+GROUP BY Genre.Name
+ORDER BY Track_Anzahl DESC;
+
+SELECT Customer.LastName, SUM(total) as Ausgaben
+FROM Invoice
+INNER JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+GROUP BY Invoice.CustomerId
+ORDER BY Ausgaben DESC;
